@@ -1,24 +1,33 @@
+import {
+    addNewItem,
+    getItems,
+    getItemWithID,
+    updateItem,
+    deleteItem
+} from '../controllers/apiController';
+
 const routes = (app) => {
     app.route('/item')
-    .get((req, res, next) => {
-        // middleware
-        console.log(`Request from: ${req.originalUrl}`)
-        console.log(`Request type: ${req.method}`)
-        next();
-    }, (req, res, next) => {
-        res.send('GET request successfull!!!');
-    })
+        .get((req, res, next) => {
+            // middleware
+            console.log(`Request from: ${req.originalUrl}`)
+            console.log(`Request type: ${req.method}`)
+            next();
+        }, getItems)
+
+        // POST endpoint
+        .post(addNewItem);
+
+        app.route('/item/:itemId')
+        // get specific item
+        .get(getItemWithID)
+        
+        // put request
+        .put(updateItem)
     
-
-    .post((req, res) =>
-    res.send('POST request successfull!!!'));
-
-    app.route('/item/:itemId')
-    .put((req, res) =>
-    res.send('PUT request successfull!!!'))
-
-    .delete((req, res) =>
-    res.send('DELETE request successfull!!!'));
-}
-
-export default routes;
+        // delete request
+        .delete(deleteItem);
+    }
+    
+    export default routes;
+    

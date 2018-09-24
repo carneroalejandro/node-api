@@ -8,8 +8,8 @@ const PORT = 3000;
 
 // mongoose connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/CRMdb', {
-    useMongoClient: true
+mongoose.connect('mongodb://localhost/APIdb', {
+    useNewUrlParser: true
 });
 
 // bodyparser setup
